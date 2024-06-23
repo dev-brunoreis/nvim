@@ -1,9 +1,9 @@
 -- Atalho para abrir ou fechar o tree
-vim.keymap.set('n', '<C-n>', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle file explorer' })
+vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
 
 -- Atalhos para criar linha vazia como insert mode antes ou depois da atual linha
-vim.keymap.set('n', '<leader>o', 'o<ESC>', { desc = 'Insert new line below' })
-vim.keymap.set('n', '<leader>O', 'O<ESC>', { desc = 'Insert new line above' })
+vim.keymap.set("n", "<leader>o", "o<ESC>", { desc = "Insert new line below" })
+vim.keymap.set("n", "<leader>O", "O<ESC>", { desc = "Insert new line above" })
 
 -- Atalhos para o terminal integrado
-vim.keymap.set('n', '<A-i>', '<cmd>ToggleTerm<CR>', { desc = 'Toggle integrated terminal' })
+vim.keymap.set("n", "<A-i>", "<cmd>ToggleTerm<CR>", { desc = "Toggle integrated terminal" })
