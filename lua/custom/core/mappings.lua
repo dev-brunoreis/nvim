@@ -7,3 +7,9 @@ vim.keymap.set("n", "<leader>O", "O<ESC>", { desc = "Insert new line above" })
 
 -- Atalhos para o terminal integrado
 vim.keymap.set("n", "<A-i>", "<cmd>ToggleTerm<CR>", { desc = "Toggle integrated terminal" })
+
+-- Atalhos para os buffers
+vim.api.nvim_set_keymap("n", "<TAB>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>bd", ":bw<CR>", { desc = "Delete current buffer" })

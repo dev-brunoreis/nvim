@@ -3,6 +3,7 @@ return {
 	config = function()
 		require("bufferline").setup({
 			options = {
+				mappings = true,
 				numbers = "ordinal",
 				close_command = "bdelete! %d",
 				right_mouse_command = "bdelete! %d",
@@ -21,10 +22,10 @@ return {
 						text_align = "left",
 					},
 				},
-				show_buffer_icons = true, -- Show file icons
+				show_buffer_icons = true,
 				show_buffer_close_icons = true,
 				show_close_icon = false,
-				separator_style = "slant", -- Options: "slant", "thick", "thin", etc.
+				separator_style = "slant"
 			},
 		})
 	end,
