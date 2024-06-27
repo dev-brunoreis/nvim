@@ -10,6 +10,7 @@ return {
 			filters = {
 				dotfiles = false,
 			},
+			view = { adaptive_size = true },
 		})
 	end,
 }
