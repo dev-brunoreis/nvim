@@ -11,6 +11,6 @@ vim.keymap.set("n", "<A-i>", "<cmd>ToggleTerm<CR>", { desc = "Toggle integrated 
 -- Atalhos para os buffers
 vim.api.nvim_set_keymap("n", "<TAB>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>bd", ":BufDel<CR>", { desc = "Delete current buffer" })
+vim.keymap.set("n", "<leader>bdc", ":BufDel<CR>", { desc = "Delete current buffer" })
 vim.keymap.set("n", "<leader>bda", ":BufDelAll<CR>", { desc = "Delete all buffers" })
 vim.keymap.set("n", "<leader>bdo", ":BufDelOthers<CR>", { desc = "Delete other buffers" })
