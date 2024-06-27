@@ -11,6 +11,9 @@ return {
 				dotfiles = false,
 			},
 			view = { adaptive_size = true },
+			update_focused_file = {
+				enable = true,
+			},
 		})
 	end,
 }
