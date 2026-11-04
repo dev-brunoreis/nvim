@@ -1,28 +1,12 @@
-vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", {
+local map = vim.keymap.set
+
+-- Explorador
+map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", {
     desc = "Abrir explorador de arquivos",
 })
 
-vim.keymap.set("n", "<leader>[", "<cmd>ToggleTerm<CR>", {
-    desc = "Toggle Terminal",
-})
-
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], {
-    desc = "Sair do modo terminal",
-})
-
+-- Terminal
 local term_api = require("toggleterm.terminal")
-local Terminal = term_api.Terminal
-
-vim.keymap.set("n", "<leader>tn", function()
-    local term = Terminal:new({
-        direction = "horizontal",
-        size = 15,
-    })
-
-    term:toggle()
-end, {
-    desc = "Novo terminal horizontal",
-})
 
 local function cycle_open_terms(step)
     local open = {}
@@ -56,13 +40,30 @@ local function cycle_open_terms(step)
     vim.cmd("startinsert")
 end
 
-vim.keymap.set({ "n", "t" }, "<M-]>", function()
+map("n", "<leader>[", "<cmd>ToggleTerm<CR>", {
+    desc = "Toggle Terminal",
+})
+
+map("t", "<Esc>", [[<C-\><C-n>]], {
+    desc = "Sair do modo terminal",
+})
+
+map("n", "<leader>tn", function()
+    term_api.Terminal:new({
+        direction = "horizontal",
+        size = 15,
+    }):toggle()
+end, {
+    desc = "Novo terminal horizontal",
+})
+
+map({ "n", "t" }, "<M-]>", function()
     cycle_open_terms(1)
 end, {
     desc = "Próximo terminal aberto",
 })
 
-vim.keymap.set({ "n", "t" }, "<M-[>", function()
+map({ "n", "t" }, "<M-[>", function()
     cycle_open_terms(-1)
 end, {
     desc = "Terminal aberto anterior",
