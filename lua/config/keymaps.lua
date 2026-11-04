@@ -10,21 +10,8 @@ vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], {
     desc = "Sair do modo terminal",
 })
 
-
-
-
--- Próximo terminal
-vim.keymap.set("n", "<M-]>", "<cmd>ToggleTerm 2<CR>", {
-    desc = "Terminal 2",
-})
-
--- Terminal anterior
-vim.keymap.set("n", "<M-[>", "<cmd>ToggleTerm 1<CR>", {
-    desc = "Terminal 1",
-})
-
--- Criar novo terminal horizontal
-local Terminal = require("toggleterm.terminal").Terminal
+local term_api = require("toggleterm.terminal")
+local Terminal = term_api.Terminal
 
 vim.keymap.set("n", "<leader>tn", function()
     local term = Terminal:new({
@@ -35,4 +22,48 @@ vim.keymap.set("n", "<leader>tn", function()
     term:toggle()
 end, {
     desc = "Novo terminal horizontal",
+})
+
+local function cycle_open_terms(step)
+    local open = {}
+    for _, term in ipairs(term_api.get_all(true)) do
+        if term:is_open() then
+            table.insert(open, term)
+        end
+    end
+
+    if #open == 0 then
+        vim.notify("Nenhum terminal aberto", vim.log.levels.INFO)
+        return
+    end
+
+    local current
+    for i, term in ipairs(open) do
+        if term:is_focused() then
+            current = i
+            break
+        end
+    end
+
+    local target
+    if not current then
+        target = step > 0 and open[1] or open[#open]
+    else
+        target = open[((current - 1 + step) % #open) + 1]
+    end
+
+    target:focus()
+    vim.cmd("startinsert")
+end
+
+vim.keymap.set({ "n", "t" }, "<M-]>", function()
+    cycle_open_terms(1)
+end, {
+    desc = "Próximo terminal aberto",
+})
+
+vim.keymap.set({ "n", "t" }, "<M-[>", function()
+    cycle_open_terms(-1)
+end, {
+    desc = "Terminal aberto anterior",
 })
